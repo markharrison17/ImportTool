@@ -1,3 +1,8 @@
+This repo is undergoing a bit of a renevation. 
+For the time being the repo at https://github.com/open-ods is probably what you want
+
+
+
 # OpenODS Import Tool
 
 This is an import tool for creating the SQL database for OpenODS.
