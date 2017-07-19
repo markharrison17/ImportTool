@@ -50,8 +50,9 @@ else:
 if args.local:
     local_mode = args.local
 else:
-    log.info("Download mode is not currently available due to the publicly-accessible source data being removed. Please"
-             "download the source data manually, and then re-run with the local switch e.g. 'python import.py -l'")
+    log.info("Download mode is not currently available due to the publicly-accessible source data "
+             "being removed. Please download the source data manually, and then re-run with the "
+             "local switch e.g. 'python import.py -l'")
     sys.exit(1)
 
 # Set the XML file path if specified, otherwise use default
@@ -110,7 +111,6 @@ else:
                                   schema_file_path=schema_file_path,
                                   xml_url=xml_url_path,
                                   schema_url=schema_url_path)
-    
 
 def get_engine():
 
@@ -123,7 +123,9 @@ def get_engine():
 
     elif args.dbms == "postgres":
         log.debug("Using PostgreSQL")
-        db_engine = create_engine(connection_string or "postgresql://openods:openods@localhost/openods", isolation_level="READ UNCOMMITTED")
+        db_engine = create_engine(connection_string
+                                  or "postgresql://openods:openods@localhost/openods",
+                                  isolation_level="READ UNCOMMITTED")
 
     elif args.dbms is None:
         log.debug("No DBMS specified - using SQLite")
