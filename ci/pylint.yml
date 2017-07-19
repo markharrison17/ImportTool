@@ -1,0 +1,10 @@
+platform: linux
+
+inputs:
+- name: import-tool-src
+
+run:
+  dir: import-tool-src
+  path: pylint
+  args:
+    - main.py

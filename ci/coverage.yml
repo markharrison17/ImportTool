@@ -1,0 +1,13 @@
+platform: linux
+
+inputs:
+- name: import-tool-src
+
+run:
+  dir: ods-api-src
+  path: sh
+  args:
+  - -exc
+  - |
+    coverage3 run -m unittest discover
+    coverage3 report --fail-under 0 -m
