@@ -7,4 +7,4 @@ run:
   dir: import-tool-src
   path: pylint
   args:
-    - main.py
+    - import.py
