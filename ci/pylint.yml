@@ -5,7 +5,8 @@ inputs:
 
 run:
   dir: import-tool-src
-  path: pylint
+  path: sh
   args:
-    - import.py
-    - const-rgx='[a-z_][a-z0-9_]{2,30}$'
+    - -c
+    - |
+      pylint import.py --const-rgx='[a-z_][a-z0-9_]{2,30}$'
