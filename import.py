@@ -1,3 +1,4 @@
+"""Tool for importing the xml used for the ODS database"""
 import argparse
 import logging
 import time
@@ -12,9 +13,9 @@ from sqlalchemy import create_engine
 log_format = "%(asctime)s|OpenODS-Import|%(levelname)s|%(message)s"
 formatter = logging.Formatter(log_format)
 log = logging.getLogger(__name__)
-ch = logging.StreamHandler()
-ch.setFormatter(formatter)
-log.addHandler(ch)
+handler = logging.StreamHandler()
+handler.setFormatter(formatter)
+log.addHandler(handler)
 
 # Set up the command line arguments
 parser = argparse.ArgumentParser()
@@ -58,35 +59,35 @@ else:
 # Set the XML file path if specified, otherwise use default
 if args.xml:
     xml_file_path = args.xml
-    log.debug("XML parameter provided: %s" % xml_file_path)
+    log.debug("XML parameter provided: %s", xml_file_path)
 else:
     xml_file_path = 'data/fullfile.zip'
 
 # Set the schema file path if specified, otherwise use default
 if args.schema:
     schema_file_path = args.schema
-    log.debug("Schema parameter provided: %s" % schema_file_path)
+    log.debug("Schema parameter provided: %s", schema_file_path)
 else:
     schema_file_path = 'data/ancilliary.zip'
 
 # Set the data file url if specified, otherwise use default
 if args.data_url:
     xml_url_path = args.data_url
-    log.debug("URL parameter provided: %s" % xml_url_path)
+    log.debug("URL parameter provided: %s", xml_url_path)
 else:
     xml_url_path = 'http://systems.hscic.gov.uk/data/ods/interfacechanges/fullfile.zip'
 
 # Set the schema file url if specified, otherwise use default
 if args.schema_url:
     schema_url_path = args.schema_url
-    log.debug("URL parameter provided: %s" % schema_url_path)
+    log.debug("URL parameter provided: %s", schema_url_path)
 else:
     schema_url_path = 'https://digital.nhs.uk/media/971/ancilliary/zip/ancilliary'
 
 # Set the connection string using command line parameter
 if args.connection:
     connection_string = args.connection
-    log.debug("Connection parameter provided: %s" % connection_string)
+    log.debug("Connection parameter provided: %s", connection_string)
 else:
     connection_string = None
 
@@ -102,19 +103,18 @@ if local_mode:
     log.debug("Running in local mode")
 
     # Instantiate an instance of the ODSFileManager to get us the validated XML data to work with
-    File_manager = ODSFileManager(xml_file_path=xml_file_path,
+    file_manager = ODSFileManager(xml_file_path=xml_file_path,
                                   schema_file_path=schema_file_path)
 else:
     log.debug("Running in download mode")
     # Instantiate an instance of the ODSFileManager to get us the validated XML data to work with
-    File_manager = ODSFileManager(xml_file_path=xml_file_path,
+    file_manager = ODSFileManager(xml_file_path=xml_file_path,
                                   schema_file_path=schema_file_path,
                                   xml_url=xml_url_path,
                                   schema_url=schema_url_path)
 
 def get_engine():
-
-    # Create the SQLAlchemy engine based on command line parameter (default to sqlite)
+    """Create the SQLAlchemy engine based on command line parameter (default to sqlite)"""
     log.debug("Creating SQLAlchemy engine")
 
     if args.dbms == "sqlite":
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     total_start_time = time.time()
 
     # Get the XML data
-    ods_xml_data = File_manager.get_latest_xml()
+    ods_xml_data = file_manager.get_latest_xml()
 
     log.debug('Data Load Time = %s', time.strftime(
         "%H:%M:%S", time.gmtime(time.time() - total_start_time)))
