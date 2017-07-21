@@ -8,9 +8,6 @@ from sqlalchemy import Column, Integer, String
 # setup path so we can import our own models and controllers
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-
-
-
 class CodeSystem(base):
     """
     CodeSystems class that keeps track of information about a

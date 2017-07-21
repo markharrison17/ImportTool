@@ -17,29 +17,25 @@ class ODSFileManager(object):
     __ods_schema = None
 
     def __init__(self, xml_file_path, schema_file_path, xml_url=None, schema_url=None):
-        try:
-            self.xml_file_path = xml_file_path
-            log.debug('xml_file_path is %s', self.xml_file_path)
+        self.xml_file_path = xml_file_path
+        log.debug('xml_file_path is %s', self.xml_file_path)
 
-            self.schema_file_path = schema_file_path
-            log.debug('schema_file_path is %s', self.schema_file_path)
+        self.schema_file_path = schema_file_path
+        log.debug('schema_file_path is %s', self.schema_file_path)
 
-            # If the xml_url has been passed in to the constructor, we will retrieve the zip file
-            # from the remote url
-            if xml_url:
-                self.__local_mode = False
-                self.schema_url = schema_url
-                log.debug('schema_url is %s', self.schema_url)
-                self.xml_url = xml_url
-                log.debug('xml_url is %s', self.xml_url)
+        # If the xml_url has been passed in to the constructor, we will retrieve the zip file
+        # from the remote url
+        if xml_url:
+            self.__local_mode = False
+            self.schema_url = schema_url
+            log.debug('schema_url is %s', self.schema_url)
+            self.xml_url = xml_url
+            log.debug('xml_url is %s', self.xml_url)
 
-            # Otherwise we will set local_mode which will skip the download and just look for the
-            # zip file locally
-            else:
-                self.__local_mode = True
-
-        except Exception as error:
-            log.error(error)
+        # Otherwise we will set local_mode which will skip the download and just look for the
+        # zip file locally
+        else:
+            self.__local_mode = True
 
     def __return_attribute(self, attribute_name):
         pass
@@ -132,7 +128,7 @@ class ODSFileManager(object):
             if os.path.isfile(file_name):
                 return file_name
 
-    def __retrieve_latest_schema(self, schema_filename):
+    def __retrieve_latest_schema(self):
         """Get the latest XSD for the ODS XML data and return it as an
         XMLSchema object
 
@@ -145,6 +141,7 @@ class ODSFileManager(object):
         xml_schema: the ODS XSD as an XMLSchema object
         """
         try:
+            schema_filename = self.__retrieve_latest_schema_file()
             print(schema_filename)
             with zipfile.ZipFile(schema_filename) as local_zipfile:
                 # get to the name of the actual zip file
@@ -221,8 +218,8 @@ class ODSFileManager(object):
         """
 
         if self.__ods_schema is None:
-            schema_filename = self.__retrieve_latest_schema_file()
-            self.__ods_schema = self.__retrieve_latest_schema(schema_filename)
+
+            self.__ods_schema = self.__retrieve_latest_schema()
 
         if self.__ods_xml_data is None:
             data_filename = self.__retrieve_latest_datafile()

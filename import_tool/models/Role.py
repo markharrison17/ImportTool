@@ -8,9 +8,6 @@ from sqlalchemy import Column, Integer, String, Boolean, Date
 # setup path so we can import our own models and controllers
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-
-
-
 class Role(base):
     """
     Roles class that keeps track of information about a
