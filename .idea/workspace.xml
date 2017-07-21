@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0175bd9a-51d0-4c77-a580-5e4eb7f74192" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/controller/ODSFileManager.py" afterPath="$PROJECT_DIR$/import_tool/controller/ODSFileManager.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/models/Address.py" afterPath="$PROJECT_DIR$/import_tool/models/Address.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/models/CodeSystem.py" afterPath="$PROJECT_DIR$/import_tool/models/CodeSystem.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/models/Organisation.py" afterPath="$PROJECT_DIR$/import_tool/models/Organisation.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/models/Relationship.py" afterPath="$PROJECT_DIR$/import_tool/models/Relationship.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/models/Role.py" afterPath="$PROJECT_DIR$/import_tool/models/Role.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/models/Setting.py" afterPath="$PROJECT_DIR$/import_tool/models/Setting.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/models/Successor.py" afterPath="$PROJECT_DIR$/import_tool/models/Successor.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import_tool/models/Version.py" afterPath="$PROJECT_DIR$/import_tool/models/Version.py" />
-    </list>
+    <list default="true" id="0175bd9a-51d0-4c77-a580-5e4eb7f74192" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
