@@ -9,4 +9,4 @@ run:
   args:
     - -c
     - |
-      pylint import.py import_tool --const-rgx='[a-z_][a-z0-9_]{2,30}$'
+      pylint import.py import_tool --const-rgx='[a-z_][a-z0-9_]{2,30}$' --disable=R0914,W0702,R0903,W1401 --extension-pkg-whitelist=lxml
