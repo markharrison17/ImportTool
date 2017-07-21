@@ -1,3 +1,4 @@
+"""Code for the creation of the ODS DB!"""
 import datetime
 import logging
 import sys
@@ -6,7 +7,7 @@ from tqdm import tqdm
 from sqlalchemy.orm import sessionmaker
 # import models
 from import_tool.models.Address import Address
-from import_tool.models.base import Base
+from import_tool.models.base import base
 from import_tool.models.CodeSystem import CodeSystem
 from import_tool.models.Organisation import Organisation
 from import_tool.models.Relationship import Relationship
@@ -19,10 +20,12 @@ schema_version = '012'
 
 
 def convert_string_to_date(string):
+    """function to convert a string to a datetime"""
     return datetime.datetime.strptime(string, '%Y-%m-%d')
 
 
 class ODSDBCreator(object):
+    """ODSDBCreator class for creating ODS DB"""
 
     __ods_xml_data = None
     __code_system_dict = {}
@@ -31,15 +34,16 @@ class ODSDBCreator(object):
         # Create the SQLAlchemy session
         logger = logging.getLogger(__name__)
         logger.debug("Creating SQLAlchemy session")
-        Session = sessionmaker(bind=engine)
-        self.session = Session()
+        session = sessionmaker(bind=engine)
+        self.session = session()
+        self.__test_mode = False
 
         # Creates the tables of all objects derived from our Base object
-        metadata = Base.metadata
+        metadata = base.metadata
         metadata.create_all(engine)
 
     def __create_settings(self):
-    
+
         logger = logging.getLogger(__name__)
         logger.debug("Setting schema version")
         setting = Setting()
@@ -58,7 +62,7 @@ class ODSDBCreator(object):
         -------
         None
         """
-        
+
         logger = logging.getLogger(__name__)
         logger.debug("Adding codesystem information")
 
@@ -94,7 +98,7 @@ class ODSDBCreator(object):
                 codesystems[idx].name = code_system_type_name
                 codesystems[idx].displayname = display_name
 
-                # pop these in a global  dictionary, we will use these later in __create_organisations
+                # pop these in a global dictionary, use these later in __create_organisations
                 self.__code_system_dict[relationship_id] = display_name
 
                 # append this instance of code system to the session
@@ -153,9 +157,11 @@ class ODSDBCreator(object):
 
             organisations[idx].status = organisation.find('Status').attrib.get('value')
 
-            organisations[idx].record_class = self.__code_system_dict[organisation.attrib.get('orgRecordClass')]
+            organisations[idx].record_class = \
+                self.__code_system_dict[organisation.attrib.get('orgRecordClass')]
 
-            organisations[idx].last_changed = organisation.find('LastChangeDate').attrib.get('value')
+            organisations[idx].last_changed = \
+                organisation.find('LastChangeDate').attrib.get('value')
 
             organisations[idx].ref_only = bool(organisation.attrib.get('refOnly'))
 
@@ -324,7 +330,7 @@ class ODSDBCreator(object):
 
     def __create_addresses(self, organisation, organisation_xml):
 
-        for idx, location in enumerate(organisation_xml.findall(
+        for location in enumerate(organisation_xml.findall(
                 'GeoLoc/Location')):
 
             address = Address()
@@ -383,7 +389,7 @@ class ODSDBCreator(object):
 
     def __create_successors(self, organisation, organisation_xml):
 
-        for idx, succ in enumerate(organisation_xml.findall(
+        for succ in enumerate(organisation_xml.findall(
                 'Succs/Succ')):
 
             successor = Successor()
@@ -492,10 +498,10 @@ class ODSDBCreator(object):
                 logger.debug("Committing session")
                 self.session.commit()
 
-            except Exception as e:
+            except Exception:
                 # If anything fails, let's not commit anything
                 logger = logging.getLogger(__name__)
-                logger.error("Unexpected error:", sys.exc_info()[0])
+                logger.error("Unexpected error: %s", sys.exc_info()[0])
                 logger.debug("Rolling back...")
                 self.session.rollback()
                 logger.debug("Rollback complete")

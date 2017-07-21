@@ -1,15 +1,17 @@
-import sys
+"""Version class"""
 
+import sys
 import os.path
+from import_tool.models.base import base
 from sqlalchemy import Column, Integer, String
 
 # setup path so we can import our own models and controllers
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from import_tool.models.base import Base
 
 
-class Version(Base):
+
+class Version(base):
     """Versions class that keeps track of information about a
     particular ods file update. This class uses SQLAlchemy as an ORM
 
@@ -40,13 +42,13 @@ class Version(Base):
             record_count='%s',\
             content_description='%s',\
             )>" % (
-            self.version_ref,
-            self.import_timestamp,
-            self.file_version,
-            self.publication_seqno,
-            self.publication_date,
-            self.publication_type,
-            self.publication_source,
-            self.file_creation_date,
-            self.record_count,
-            self.content_description)
+                self.version_ref,
+                self.import_timestamp,
+                self.file_version,
+                self.publication_seqno,
+                self.publication_date,
+                self.publication_type,
+                self.publication_source,
+                self.file_creation_date,
+                self.record_count,
+                self.content_description)

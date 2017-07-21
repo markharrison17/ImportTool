@@ -1,15 +1,17 @@
-import sys
+"""Address class"""
 
+import sys
 import os.path
 from sqlalchemy import Column, Integer, String
+from import_tool.models.base import base
 
 # setup path so we can import our own models and controllers
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from import_tool.models.base import Base
 
 
-class Address(Base):
+
+class Address(base):
     """
     Addresses class that keeps track of information about a
     particular Addresses. This class uses SQLAlchemy as an ORM

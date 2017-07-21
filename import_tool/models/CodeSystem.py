@@ -1,15 +1,17 @@
-import sys
+"""CodeSystem class"""
 
+import sys
 import os.path
+from import_tool.models.base import base
 from sqlalchemy import Column, Integer, String
 
 # setup path so we can import our own models and controllers
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from import_tool.models.base import Base
 
 
-class CodeSystem(Base):
+
+class CodeSystem(base):
     """
     CodeSystems class that keeps track of information about a
     particular ods file update. This class uses SQLAlchemy as an ORM
@@ -26,7 +28,7 @@ class CodeSystem(Base):
     def __repr__(self):
         return "<CodeSystem('%s %s %s %s'\
             )>" % (
-            self.ref,
-            self.name,
-            self.id,
-            self.displayname)
+                self.ref,
+                self.name,
+                self.id,
+                self.displayname)

@@ -1,14 +1,17 @@
-from lxml import etree as xml_tree_parser
+"""Code managing the ODS databas!"""
+
 import logging
 import os.path
 import sys
 import urllib.request
 import zipfile
+from lxml import etree as xml_tree_parser
 
 log = logging.getLogger('import_ods_xml')
 
 
 class ODSFileManager(object):
+    """ODSFileManager class for dealing with the files the data is imported from"""
 
     __ods_xml_data = None
     __ods_schema = None
@@ -16,25 +19,27 @@ class ODSFileManager(object):
     def __init__(self, xml_file_path, schema_file_path, xml_url=None, schema_url=None):
         try:
             self.xml_file_path = xml_file_path
-            log.debug('xml_file_path is %s' % self.xml_file_path)
+            log.debug('xml_file_path is %s', self.xml_file_path)
 
             self.schema_file_path = schema_file_path
-            log.debug('schema_file_path is %s' % self.schema_file_path)
+            log.debug('schema_file_path is %s', self.schema_file_path)
 
-            # If the xml_url has been passed in to the constructor, we will retrieve the zip file from the remote url
+            # If the xml_url has been passed in to the constructor, we will retrieve the zip file
+            # from the remote url
             if xml_url:
                 self.__local_mode = False
                 self.schema_url = schema_url
-                log.debug('schema_url is %s' % self.schema_url)
+                log.debug('schema_url is %s', self.schema_url)
                 self.xml_url = xml_url
-                log.debug('xml_url is %s' % self.xml_url)
+                log.debug('xml_url is %s', self.xml_url)
 
-            # Otherwise we will set local_mode which will skip the download and just look for the zip file locally
+            # Otherwise we will set local_mode which will skip the download and just look for the
+            # zip file locally
             else:
                 self.__local_mode = True
 
-        except Exception as e:
-            log.error(e)
+        except Exception as error:
+            log.error(error)
 
     def __return_attribute(self, attribute_name):
         pass
@@ -45,7 +50,7 @@ class ODSFileManager(object):
         Parameters
         ----------
         None
-        
+
         Returns
         -------
         String: Filename if found
@@ -54,7 +59,7 @@ class ODSFileManager(object):
         file_name = self.schema_file_path
         tmp_file_name = str.format("%s.tmp" % file_name)
 
-        # If we are not running in local mode, we attempt to download the latest schema zip file first.
+        # If not running in local mode, we attempt to download the latest schema zip file first.
         if not self.__local_mode:
             url = self.schema_url
 
@@ -77,8 +82,8 @@ class ODSFileManager(object):
                     else:
                         raise ValueError('Unable to locate the schema file')
 
-        # If we are running in local mode, we simply check that the zip file is already present locally
-        # and return the file name
+        # If we are running in local mode, we simply check that the zip file is already present
+        # locally and return the file name
         else:
             if os.path.isfile(file_name):
                 return file_name
@@ -90,7 +95,7 @@ class ODSFileManager(object):
         Parameters
         ----------
         None
-        
+
         Returns
         -------
         String: Filename if found
@@ -147,8 +152,8 @@ class ODSFileManager(object):
                 print(zip_info)
 
                 # extract the schema file from the zip
-                with local_zipfile.open('HSCOrgRefData.xsd') as f:
-                    doc = xml_tree_parser.parse(f)
+                with local_zipfile.open('HSCOrgRefData.xsd') as file:
+                    doc = xml_tree_parser.parse(file)
                     return xml_tree_parser.XMLSchema(doc)
 
         except:
@@ -162,7 +167,7 @@ class ODSFileManager(object):
         Parameters
         ----------
         String: filename of the zip file containing the xml
-        
+
         Returns
         -------
         None
@@ -199,18 +204,17 @@ class ODSFileManager(object):
                 log.debug("Data is valid against schema")
                 return valid
 
-        except Exception as e:
+        except Exception:
             raise
-            sys.exit(1)
 
     def get_latest_xml(self):
-        """Check if we have ODS xml data. If we don't we should retrieve the latest version available and
-        explode it from zip format into a xmltree object
+        """Check if we have ODS xml data. If we don't we should retrieve the latest version
+        available and explode it from zip format into a xmltree object
 
         Parameters
         ----------
         None
-        
+
         Returns
         -------
         xml_tree_parser: containing the entire xml dataset

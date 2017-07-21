@@ -1,15 +1,15 @@
-import sys
+"""Relationship class"""
 
+import sys
 import os.path
+from import_tool.models.base import base
 from sqlalchemy import Column, Integer, String, Date
 
 # setup path so we can import our own models and controllers
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from import_tool.models.base import Base
 
-
-class Relationship(Base):
+class Relationship(base):
     """
     Relationships class that keeps track of information about a
     particular Relationships. This class uses SQLAlchemy as an ORM
@@ -33,14 +33,14 @@ class Relationship(Base):
     def __repr__(self):
         return "<Relationship('%s %s %s %s %s %s %s %s %s %s %s'\
             )>" % (
-            self.ref,
-            self.organisation_ref,
-            self.relationship_code,
-            self.target_odscode,
-            self.org_odscode,
-            self.legal_start_date,
-            self.legal_end_date,
-            self.operational_start_date,
-            self.operational_end_date,
-            self.status,
-            self.uid)
+                self.ref,
+                self.organisation_ref,
+                self.relationship_code,
+                self.target_odscode,
+                self.org_odscode,
+                self.legal_start_date,
+                self.legal_end_date,
+                self.operational_start_date,
+                self.operational_end_date,
+                self.status,
+                self.uid)

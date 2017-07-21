@@ -1,15 +1,15 @@
-import sys
+"""Successor class"""
 
+import sys
 import os.path
+from import_tool.models.base import base
 from sqlalchemy import Column, Integer, String, Date
 
 # setup path so we can import our own models and controllers
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from import_tool.models.base import Base
 
-
-class Successor(Base):
+class Successor(base):
     """
     Successor class that keeps track of information about successors for entities.
     This class uses SQLAlchemy as an ORM
@@ -28,14 +28,12 @@ class Successor(Base):
 
     # Returns a printable version of the objects contents
     def __repr__(self):
-        return "<Successor(%s %s %s %s %s %s %s %s\)>" \
-            % (
-                self.ref,
-                self.unique_id,
-                self.org_odscode,
-                self.legal_start_date,
-                self.type,
-                self.target_odscode,
-                self.target_primary_role_code,
-                self.target_unique_role_id
-               )
+        return "<Successor(%s %s %s %s %s %s %s %s\)>" % (
+            self.ref,
+            self.unique_id,
+            self.org_odscode,
+            self.legal_start_date,
+            self.type,
+            self.target_odscode,
+            self.target_primary_role_code,
+            self.target_unique_role_id)
