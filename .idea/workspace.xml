@@ -87,9 +87,11 @@
       <file leaf-file-name="ODSFileManager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/import_tool/controller/ODSFileManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="60">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="e#38#52#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -520,9 +522,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/import_tool/controller/ODSFileManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="60">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="e#38#52#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
