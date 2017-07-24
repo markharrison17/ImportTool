@@ -5,7 +5,7 @@ import os.path
 import sys
 import urllib.request
 import zipfile
-from lxml import etree as xml_tree_parser
+from xml import etree as xml_tree_parser
 
 log = logging.getLogger('import_ods_xml')
 
