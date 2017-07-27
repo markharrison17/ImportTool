@@ -17,7 +17,6 @@ class Address(base):
     __tablename__ = 'addresses'
 
     addresses_ref = Column(Integer, primary_key=True)
-    organisation_ref = Column(Integer)
     org_odscode = Column(String(10), index=True)
     address_line1 = Column(String(75))
     address_line2 = Column(String(75))
@@ -26,21 +25,16 @@ class Address(base):
     county = Column(String(75))
     post_code = Column(String(15))
     country = Column(String(50))
-    uprn = Column(Integer)
-    location_id = Column(String(12))
 
     # Returns a printable version of the objects contents
     def __repr__(self):
-        return "<Addresses(%s %s %s %s %s %s %s %s %s %s %s\)>" \
+        return "<Addresses(%s %s %s %s %s %s %s %s\)>" \
             % (
                 self.addresses_ref,
-                self.organisation_ref,
                 self.org_odscode,
                 self.address_line1,
                 self.address_line2,
                 self.address_line3,
                 self.town,
                 self.county,
-                self.post_code,
-                self.uprn,
-                self.location_id)
+                self.post_code)

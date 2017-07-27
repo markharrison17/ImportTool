@@ -17,7 +17,6 @@ class Relationship(base):
     __tablename__ = 'relationships'
 
     ref = Column(Integer, primary_key=True)
-    organisation_ref = Column(Integer)
     code = Column(String(10), index=True)
     target_odscode = Column(String(50), index=True)
     org_odscode = Column(String(10), index=True)
@@ -30,10 +29,9 @@ class Relationship(base):
 
     # Returns a printable version of the objects contents
     def __repr__(self):
-        return "<Relationship('%s %s %s %s %s %s %s %s %s %s %s'\
+        return "<Relationship('%s %s %s %s %s %s %s %s %s %s'\
             )>" % (
                 self.ref,
-                self.organisation_ref,
                 self.relationship_code,
                 self.target_odscode,
                 self.org_odscode,
