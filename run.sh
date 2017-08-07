@@ -13,6 +13,7 @@ ATTEMPT=0
 IS_CREATED=1
 while [[ ${ATTEMPT} -lt ${MAX_ATTEMPTS} ]]
 do
+   netstat -a
    psql -U postgres -c "CREATE DATABASE openods OWNER postgres;"
    if [[ $? -eq 0 ]]
    then
