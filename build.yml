@@ -1,0 +1,12 @@
+platform: linux
+
+inputs:
+- name: import-tool-src
+
+run:
+  dir: import-tool-src
+  path: sh
+  args:
+    - -exc
+    - |
+      run.sh
