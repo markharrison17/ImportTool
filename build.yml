@@ -2,7 +2,7 @@ platform: linux
 
 inputs:
 - name: import-tool-src
-#  - ods-data
+- name: ods-data
 
 
 run:
