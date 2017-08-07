@@ -8,3 +8,5 @@
 #python3 import.py -d postgres -l -c postgresql://postgres@localhost/openods --verbose
 
 ls -al
+cd ../
+ls -al
