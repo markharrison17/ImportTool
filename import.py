@@ -1,4 +1,5 @@
-""""""
+"""Tool for importing the xml used for the ODS database"""
+
 import argparse
 import logging
 import time
