@@ -9,4 +9,6 @@ run:
   args:
     - -exc
     - |
+      pwd
+      ls
       run.sh
