@@ -68,7 +68,6 @@ if args.schema:
     schema_file_path = args.schema
     log.debug("Schema parameter provided: %s", schema_file_path)
 else:
-    schema_file_path = 'data/ancilliary.zip'
 
 # Set the data file url if specified, otherwise use default
 if args.data_url:

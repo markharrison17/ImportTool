@@ -7,8 +7,6 @@
 #cd /usr/src/ImportTool
 #python3 import.py -d postgres -l -c postgresql://postgres@localhost/openods --verbose
 
-ls -al
-cd ../
-ls -al
-cd ods-data
-ls -al
+psql -U postgres -c "CREATE DATABASE openods OWNER postgres;"
+python3 ./import.py -d postgres -l -c postgresql://postgres@localhost/openods \
+  -x ../ods-data/fullfile.zip -s ../ods-data/ancilliary.zip --verbose
