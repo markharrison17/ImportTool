@@ -1,8 +1,7 @@
 platform: linux
 
 inputs:
-- name:
-  - import-tool-src
+- name: import-tool-src
 #  - ods-data
 
 
