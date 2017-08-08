@@ -9,6 +9,6 @@ run:
   dir: import-tool-src
   path: sh
   args:
-    - -exc
+    - -c
     - |
       ./run.sh
